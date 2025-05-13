@@ -1,0 +1,26 @@
+.motto-container {
+    margin-top: 1rem;
+    width: 98vw;
+    /* height: 3rem; */
+    background-color: #FFFFCD;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 1rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .motto-container p {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  

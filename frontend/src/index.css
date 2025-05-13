@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  position: relative;
+
+  color-scheme: light dark;
+  color: black;
+  background-color: #FFFDD0;
+  background-image: url('./assets/pastry222.png'); /* Adjust path as needed */
+  background-repeat: repeat;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.link:hover {
+  color: #ff5722;
+  transform: scale(1.05);
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  color: blueviolet;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 2px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #FF4F00;
+  color: white;
+  cursor: pointer;
+  transition: border-color 0.25s, font-size 0.25s, background-color 0.25s;
+}
+button:hover {
+  background-color: #f66b2b;
+  border-color: #000000;
+  font-size: 1.05em;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0c366;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #fffef0;
+  color: #333;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+input:focus {
+  border-color: #ff9900;
+  box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
+}
+
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #FFFBAE;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #ff870f;
+  box-shadow: 0 0 0 3px rgba(255, 135, 15, 0.3);
+}
+
+
+                                          /* for clickable components */
+.clickables {
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.clickables:hover {
+  transform: scale(1.05);
+}
+
+.clickables:active {
+  transform: scale(0.9);
+}
+
+
+                                          /* for the go to top button */
+.gotop:hover {
+  transform: rotate(360deg);
+}
+
+.gotop:active {
+  transform: scale(0.9);
+}
+
+.basic-container {
+  background-color: #FFFFCD;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease, color 0.2s ease;
+}
+
+.basic-container:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+
