@@ -6,7 +6,7 @@ function OfferSection() {
   return (
     <div style={{width: '98vw', display: 'flex', flexDirection: 'column', padding: '2.5rem'}}>
 
-        <SectionTitleBox SectionTitle="Special Offers" />
+        <SectionTitleBox SectionTitle='Popular Offers' SectionLink='/offerpage'/>
 
         <div style={{display: 'flex', flexDirection: 'row', overflowX: 'auto', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth', gap: '1.5rem', padding: '2rem'}}>
 

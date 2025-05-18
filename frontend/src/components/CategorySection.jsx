@@ -18,7 +18,7 @@ function CategorySection() {
   return (
     <div style={{width: '98vw', display: 'flex', flexDirection: 'column', padding: '2.5rem'}}>
 
-    <SectionTitleBox SectionTitle="Our Products" />
+    <SectionTitleBox SectionTitle="Our Products"/>
 
     {/* Option bar */}
     <div ref={containerRef} style={{backgroundColor: '#ff870f', padding: '0.5rem', marginTop: '1rem', display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '1rem', borderRadius: '1rem', fontSize: '1.2rem', fontWeight: 'bold', position: 'relative'}}>
