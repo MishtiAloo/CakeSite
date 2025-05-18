@@ -18,12 +18,20 @@ import MottoSection from './components/MottoSection'
 import Cart from './components/Cart'
 import GoToTop from './components/GoToTop'
 import NavSlider from './components/NavSlider'
+import AboutPage from './pages/AboutPage'
+import OffersPage from './pages/OffersPage'
+import OfferCardCompact from './cards/OfferCardCompact'
+import OCCSection from './components/OCCSection'
+import ProductPage from './pages/ProductPage'
 
 function App() {
 
   return (
     <>
+
       <Router>
+        <Navbar />
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/hero" element={<HeroSection />} />
@@ -43,8 +51,16 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/top" element={<GoToTop />} />
           <Route path="/slider" element={<NavSlider />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/offerpage" element={<OffersPage />} />
+          <Route path="/offcomp" element={<OfferCardCompact />} />
+          <Route path="/occsec" element={<OCCSection />} />
+          <Route path="/prodpage" element={<ProductPage />} />
         </Routes>
+
+        <Footer />
       </Router>
+      
     </>
   )
 }

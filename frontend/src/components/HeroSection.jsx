@@ -4,11 +4,11 @@ import Navbar from './Navbar'
 function HeroSection() {
   return (
     <>
-    <div style={{backgroundColor: '#f7f7ab', width: '98.8vw', height: '550px', position: 'relative', borderRadius: '0 100px 0 0', marginTop: '-1.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+    <div style={{backgroundColor: '#f7f7ab', width: '98.8vw', height: '90vh', position: 'relative', borderRadius: '0 100px 0 0', marginTop: '-1.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 
         {/* top bar */}
-        <div style={{backgroundColor: '#f5a91d', position: 'absolute', right: '0', top: '0', width: '100%', height: '80px', borderRadius: '0 200px 0 200px'}}>
-          <Navbar />
+        <div style={{backgroundColor: '#f5a91d', position: 'absolute', right: '0', top: '0', width: '100%', height: '14vh', borderRadius: '0 200px 0 200px'}}>
+          {/* <Navbar /> */}
         </div>
 
         {/* bottom bar */}
@@ -20,7 +20,7 @@ function HeroSection() {
         </div>
 
         {/* top curl */}
-        <div style={{backgroundColor: '#FFA500', position: 'absolute', right: '0', top: '80px', width: '70px', height: '100px'}}> 
+        <div style={{backgroundColor: '#FFA500', position: 'absolute', right: '0', top: '14vh', width: '70px', height: '100px'}}> 
           <div style={{backgroundColor: '#f7f7ab', right: '0', top: '100px', width: '100%', height: '100px', borderRadius: '0 200px 0 0'}}></div> 
         </div>
 
