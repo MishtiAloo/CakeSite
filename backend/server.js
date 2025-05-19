@@ -3,6 +3,11 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { connectDB } from './config/db.js';
 
+import productRoute from './routes/product.route.js';
+import userRoute from './routes/user.route.js';
+import offerRoute from './routes/offer.route.js';
+import reviewRoute from './routes/review.route.js';
+
 dotenv.config();
 
 const app = express();
@@ -10,6 +15,11 @@ const PORT = process.env.PORT || 5001;
 
 app.use(cors())
 app.use(express.json()); 
+
+app.use("/api/products", productRoute);
+app.use("/api/users", userRoute);
+app.use("/api/offers", offerRoute);
+app.use("/api/reviews", reviewRoute);
 
 app.listen(PORT, () => {
     connectDB();

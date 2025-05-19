@@ -42,7 +42,7 @@ function Navbar() {
         <div className='nav-links'>
             <Link to="/home" className="clickables">Home</Link>
             <Link to="/about" className="clickables">About</Link>
-            <Link to="/products" className="clickables">Products</Link>
+            <Link to="/prodpage" className="clickables">Products</Link>
             <Link to="/offerpage" className="clickables">Offers</Link>
             <Link to="/cart" className="clickables">Cart</Link>
             <Link to="/contact" className="clickables">Contact Us</Link>

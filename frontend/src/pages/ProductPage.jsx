@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import BasicProductSection from '../components/BasicProductSection.jsx'
+import { useProductStore } from '../stores/product.store.js'
 
 function ProductPage() {
+    const {
+      products,
+      fetchProducts,
+      addProduct,
+      updateProduct,
+      deleteProduct,
+      loading,
+      error,
+    } = useProductStore();
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
-    <div>
-        <p>prod</p>
-        <p>prod</p>
-        <p>prod</p>
-        <p>prod</p>
-        <p>prod</p>
-        <p>prod</p>
-        <p>prod</p>
+    <div className='basic-page-container'>
+        <BasicProductSection sectionTitle='Cake Products' 
+        products={products.filter((prod) => prod.productType === 'cake')}/>
+
+        <BasicProductSection sectionTitle='Snack Products' 
+        products={products.filter((prod) => prod.productType === 'snacks')}/>
     </div>
   )
 }
