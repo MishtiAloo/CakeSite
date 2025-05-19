@@ -23,6 +23,7 @@ import OffersPage from './pages/OffersPage'
 import OfferCardCompact from './cards/OfferCardCompact'
 import OCCSection from './components/OCCSection'
 import ProductPage from './pages/ProductPage'
+import BasicProductSection from './components/BasicProductSection'
 
 function App() {
 

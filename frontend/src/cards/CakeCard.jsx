@@ -1,18 +1,18 @@
 import React from 'react'
 import '../styles/CakeCard.css';
 
-function CakeCard({imgSrc, title, description, price}) {
+function CakeCard({product}) {
   return (
     <div className='container'>
             <div className='image-container'>
-                <img src= {imgSrc} alt='Cake' />
+                <img src= {product.productImage} alt='Cake' />
             </div>
 
             <div className='content'>
-                <h2>{title}</h2>
-                <p>{description}</p>
+                <h2>{product.productName}</h2>
+                <p>{product.productDescription}</p>
                 <div className="foot">
-                    <p>{price}$/pound</p>
+                    <p>{product.productPrice}$/pound</p>
                     <button>Order Now</button>
                 </div>
             </div>
