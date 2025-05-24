@@ -105,7 +105,7 @@ button:focus-visible {
 }
 
 input {
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.4rem;
   border: 2px solid #e0c366;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -117,7 +117,6 @@ input {
 
 input:focus {
   border-color: #ff9900;
-  box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.2);
 }
 
 textarea {
@@ -199,6 +198,21 @@ textarea:focus {
   padding: 2rem;
   margin-top: 8vh;
   gap: 5rem;
+}
+
+select {
+  padding: 0.5rem 0.4rem;
+  border: 2px solid #e0c366;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #fffef0;
+  color: #333;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+select:hover {
+  border-color: #dca901;
 }
 
 

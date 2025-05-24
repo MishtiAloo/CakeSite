@@ -23,7 +23,10 @@ import OffersPage from './pages/OffersPage'
 import OfferCardCompact from './cards/OfferCardCompact'
 import OCCSection from './components/OCCSection'
 import ProductPage from './pages/ProductPage'
-import BasicProductSection from './components/BasicProductSection'
+import BasicProductSection from './components/BasicProductSectionGrid'
+import ProductDetailsPage from './pages/ProductDetailsPage'
+import StarRating from './components/StarRating'
+import PlusMinus from './components/PlusMinus'
 
 function App() {
 
@@ -57,6 +60,9 @@ function App() {
           <Route path="/offcomp" element={<OfferCardCompact />} />
           <Route path="/occsec" element={<OCCSection />} />
           <Route path="/prodpage" element={<ProductPage />} />
+          <Route path="/proddet" element={<ProductDetailsPage />} />
+          <Route path="/star" element={<StarRating />} />
+          <Route path="/plusmin" element={<PlusMinus />} />
         </Routes>
 
         <Footer />

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import BasicProductSection from '../components/BasicProductSection.jsx'
+import BasicProductSection from '../components/BasicProductSectionGrid.jsx'
 import { useProductStore } from '../stores/product.store.js'
 
 function ProductPage() {
