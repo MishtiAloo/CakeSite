@@ -23,8 +23,12 @@ function ProductDetailsPage() {
     } = useProductStore();  
 
     useEffect(() => {
-        fetchProducts();    
-    }, []);
+        console.log('triggered')
+        setTotal(parsedProduct.productPrice * inpValue)
+        setInpValue(parsedProduct.productType === 'cake'? parsedProduct.minimumPound : parsedProduct.minimumOrder);
+        setSelectedTopping('none');
+        fetchProducts();   
+    }, [window.location.pathname]);
 
     useEffect(() => {
         let extraPrice = 0;
@@ -38,7 +42,6 @@ function ProductDetailsPage() {
         } else {
             setRelatedProducts (products.filter((product) => product.snackType === parsedProduct.snackType))
         }
-        console.log(relatedProducts);
     }, [products]);
 
   return (
@@ -80,7 +83,7 @@ function ProductDetailsPage() {
                         </select>
                     </div>
                     <div>
-                        <p style={{fontSize: '1.2rem', fontWeight: '500', marginBottom: '0.6rem'}}>Wirtings:</p>
+                        <p style={{fontSize: '1.2rem', fontWeight: '500', marginBottom: '0.6rem'}}>Writings:</p>
                         <textarea placeholder='Happy Birthday!' rows={3} cols={30} />
                     </div>
                 </div>

@@ -6,7 +6,8 @@ function CakeCard({product}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/proddet', { state: { parsedProduct: product } });  
+    navigate(`/proddet/${product._id}`, { state: { parsedProduct: product } });
+
   }
 
   return (

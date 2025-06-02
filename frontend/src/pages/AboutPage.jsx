@@ -17,7 +17,7 @@ function AboutPage() {
         <div>
             <h1>About Us</h1>
             <p style={{fontSize: '1.5rem', textAlign: 'center', maxWidth: '600px'}}>
-                We want money, we dont care about your damn cake. Please please please buy from uss!
+                Please buy our overpriced products. We need money to buy cocaine and hookers.
             </p>
         </div>
     </div>

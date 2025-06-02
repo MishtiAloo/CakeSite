@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/NavSlider.css'
 import { FaWindowClose } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
 
-import logo from '../assets/logo.png'
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { FaHome, FaInfoCircle, FaBoxOpen, FaTags, FaPhone, FaShoppingCart, FaUser } from 'react-icons/fa';
+import ProductSearch from './ProductSearch';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 function NavSlider() {
+
+    const location = useLocation();
+    const navigate = useNavigate();
 
     function sliderClose() {
         const slider = document.querySelector('.slider-container');
@@ -15,6 +18,10 @@ function NavSlider() {
         slider.classList.remove('active');
         nav.style.transform = 'translateX(0%)';
     }
+
+    useEffect(() => {
+        sliderClose();
+    }, [location.pathname]);
 
   return (
     <div className= 'slider-container'>
@@ -26,8 +33,7 @@ function NavSlider() {
                     </div>
 
                     <div className='slider-search'>
-                        <FaSearch className='clickables'/>
-                        <input style={{height: '2rem'}} type="text" placeholder='Search cakes/cupcakes..' />
+                        <ProductSearch />
                     </div>
 
                     <div className='slider-contact'>
@@ -37,23 +43,23 @@ function NavSlider() {
                         
                         <div className='basic-container'>
                             <h2 style={{marginBottom: '1rem'}}>Follow Us</h2>
-                            <p className='clickables'><FaFacebook color="#3b5998" size={24} style={{ marginRight: '0.5rem' }} /> Facebook</p>
-                            <p className='clickables'><FaInstagram color="#E4405F" size={24} style={{ marginRight: '0.5rem' }} /> Instagram</p>
-                            <p className='clickables'><FaTwitter color="#1DA1F2" size={24} style={{ marginRight: '0.5rem' }} /> Twitter</p>
-                            <p className='clickables'><FaLinkedin color="#0077b5" size={24} style={{ marginRight: '0.5rem' }} /> LinkedIn</p>
+                            <p onClick={()=>{window.open("https://google.com", "_blank");}} className='clickables'><FaFacebook color="#3b5998" size={24} style={{ marginRight: '0.5rem' }} /> Facebook</p>
+                            <p onClick={()=>{window.open("https://google.com", "_blank");}} className='clickables'><FaInstagram color="#E4405F" size={24} style={{ marginRight: '0.5rem' }} /> Instagram</p>
+                            <p onClick={()=>{window.open("https://google.com", "_blank");}} className='clickables'><FaTwitter color="#1DA1F2" size={24} style={{ marginRight: '0.5rem' }} /> Twitter</p>
+                            <p onClick={()=>{window.open("https://google.com", "_blank");}} className='clickables'><FaLinkedin color="#0077b5" size={24} style={{ marginRight: '0.5rem' }} /> LinkedIn</p>
                         </div>
                     </div>
 
                     <div className='slider-quickLinks basic-container'>
                         <h2>Quick Links</h2>
                         <div style={{paddingLeft: '2rem', margin: '1rem'}}>
-                            <p className='clickables'><FaHome /> Home</p>
-                            <p className='clickables'><FaInfoCircle /> About</p>
-                            <p className='clickables'><FaBoxOpen /> Products</p>
-                            <p className='clickables'><FaTags /> Offers</p>
-                            <p className='clickables'><FaPhone /> Contact</p>
-                            <p className='clickables'><FaShoppingCart /> Cart</p>
-                            <p className='clickables'><FaUser /> Account</p>
+                            <p className='clickables'><FaHome /> <Link to='/home'>Home</Link></p>
+                            <p className='clickables'><FaInfoCircle /> <Link to='/about'>About</Link></p>
+                            <p className='clickables'><FaBoxOpen /> <Link to='/prodpage'>Products</Link></p>
+                            <p className='clickables'><FaTags /> <Link to='/offerpage'>Offers</Link></p>
+                            <p className='clickables'><FaPhone /> <Link to='/contact'>Contact Us</Link></p>
+                            <p className='clickables'><FaShoppingCart /> <Link to='/cart'>Cart</Link></p>
+                            <p className='clickables'><FaUser /> <Link to='/account'>Account</Link></p>
                         </div>
                     </div>
                 </div>

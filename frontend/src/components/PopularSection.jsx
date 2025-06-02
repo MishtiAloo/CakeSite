@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import CakeCard from '../cards/CakeCard'
 import SectionTitleBox from './SectionTitleBox'
 import { useProductStore } from '../stores/product.store.js'
+import BasicProductSection from './BasicProductSectionGrid.jsx';
 
 function PopularSection() {
   const {
@@ -20,13 +21,7 @@ function PopularSection() {
 
   return (
     <>
-    
-    <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', rowGap: '2rem', flexWrap: 'wrap', padding: '2.5rem', gap: '2rem'}}>
-
-        <SectionTitleBox SectionTitle="Popular Cakes" />
-
-        {products && products.filter((prod) => prod.totalBuys >= 100).map ((product) => {return (<CakeCard product={product} key={product.id} />)})}
-    </div>
+      <BasicProductSection sectionTitle="Popular Cakes" products={products && products.filter((prod) => prod.totalBuys >= 100)} />
     </>
   )
 }

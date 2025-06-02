@@ -23,10 +23,12 @@ import OffersPage from './pages/OffersPage'
 import OfferCardCompact from './cards/OfferCardCompact'
 import OCCSection from './components/OCCSection'
 import ProductPage from './pages/ProductPage'
-import BasicProductSection from './components/BasicProductSectionGrid'
 import ProductDetailsPage from './pages/ProductDetailsPage'
 import StarRating from './components/StarRating'
 import PlusMinus from './components/PlusMinus'
+import ScrollToTop from './components/ScrollToTop'
+import ProductSearch from './components/ProductSearch'
+import SearchedPage from './pages/SearchedPage'
 
 function App() {
 
@@ -35,7 +37,7 @@ function App() {
 
       <Router>
         <Navbar />
-
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/hero" element={<HeroSection />} />
@@ -60,9 +62,11 @@ function App() {
           <Route path="/offcomp" element={<OfferCardCompact />} />
           <Route path="/occsec" element={<OCCSection />} />
           <Route path="/prodpage" element={<ProductPage />} />
-          <Route path="/proddet" element={<ProductDetailsPage />} />
+          <Route path="/proddet/:id" element={<ProductDetailsPage />} />
           <Route path="/star" element={<StarRating />} />
           <Route path="/plusmin" element={<PlusMinus />} />
+          <Route path="/psearch" element={<ProductSearch />} />
+          <Route path="/searchpage" element={<SearchedPage />} />
         </Routes>
 
         <Footer />

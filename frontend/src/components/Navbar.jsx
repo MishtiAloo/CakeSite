@@ -6,6 +6,7 @@ import logo from '../assets/logo.png'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
 import NavSlider from './NavSlider';
+import ProductSearch from './ProductSearch';
 
 function Navbar() {
 
@@ -48,8 +49,7 @@ function Navbar() {
             <Link to="/contact" className="clickables">Contact Us</Link>
         </div>
         <div className='nav-search'>
-            <FaSearch className='clickables'/>
-            <input style={{height: '50%'}} type="text" placeholder="Search cakes/cupcakes.." />
+            <ProductSearch />
         </div>
 
         <div className='nav-profile-menu'>

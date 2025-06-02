@@ -7,7 +7,7 @@ function BasicProductSectionLinear({sectionTitle, products}) {
         <div style={{width: '98vw', display: 'flex', flexDirection: 'column', padding: '2.5rem'}}>
           <SectionTitleBox SectionTitle= {sectionTitle} />
     
-          <div style={{width: '90vw', display: 'flex', flexDirection: 'row', overflowX: 'auto', scrollSnapType: 'x mandatory', scrollBehavior: 'smooth', gap: '1.5rem', padding: '2rem 1rem'}}>
+          <div style={{width: '90vw', display: 'flex', flexDirection: 'row', overflowX: 'auto', gap: '1.5rem', padding: '2rem 1rem'}}>
             {products && products.map ((product) => {return (<CakeCard product={product} key={product.id} />)})}
           </div>
         </div>
