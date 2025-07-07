@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import '../styles/Navbar.css'
 import logo from '../assets/logo.png'
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaSearch } from "react-icons/fa";
 import NavSlider from './NavSlider';
 import ProductSearch from './ProductSearch';
+import { useAuthStore } from '../stores/user.store.js';
+
+import { FaRegUser } from "react-icons/fa";
 
 function Navbar() {
 
     const [isFixed, setIsFixed] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const {user} = useAuthStore();
+    const navigate = useNavigate();
 
     useEffect(() => {
       const handleScroll = () => {
@@ -34,6 +38,10 @@ function Navbar() {
         nav.style.transform = 'translateX(-120%)';
     }
 
+    const handleloginSignup = () => {
+        navigate('/logsign');
+    }
+
   return (
     <>
     <div className={`nav-container ${isFixed? 'fixed' : ''}`}>
@@ -53,9 +61,17 @@ function Navbar() {
         </div>
 
         <div className='nav-profile-menu'>
-            <div className="account clickables">
-                <img src="https://www.bssnews.net/assets/news_photos/2023/02/05/image-109069-1675599623.jpg" alt="" />
-            </div>
+            {user ? <div className="account clickables">
+              <img src="https://www.bssnews.net/assets/news_photos/2023/02/05/image-109069-1675599623.jpg" alt="" />
+            </div> : 
+            <div className="account clickables" style={{boxShadow: 'none', overflow: 'visible', display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'wheat', borderRadius: '1rem', padding: '0.8rem'}} onClick={handleloginSignup}>
+                <FaRegUser />
+                <div style={{lineHeight: '0.9rem'}}>
+                    <p>Login/ </p>
+                    <p>Register</p>
+                </div>
+            </div>}
+            
 
             <div className="menu clickables" onClick={handleMenu}>
                 <GiHamburgerMenu />

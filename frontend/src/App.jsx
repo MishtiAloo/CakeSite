@@ -29,6 +29,11 @@ import PlusMinus from './components/PlusMinus'
 import ScrollToTop from './components/ScrollToTop'
 import ProductSearch from './components/ProductSearch'
 import SearchedPage from './pages/SearchedPage'
+import CartPage from './pages/CartPage'
+import GoogleLoginComponent from './components/GoogleLoginComponent'
+import LoginSignUpPage from './pages/LoginSignUpPage'
+import LoginModal from './modals/LoginModal'
+import SignupModal from './modals/SignupModal'
 
 function App() {
 
@@ -54,7 +59,7 @@ function App() {
           <Route path="/foot" element={<Footer />} />
           <Route path="/nav" element={<Navbar />} />
           <Route path="/motto" element={<MottoSection />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/mini-cart" element={<Cart />} />
           <Route path="/top" element={<GoToTop />} />
           <Route path="/slider" element={<NavSlider />} />
           <Route path="/about" element={<AboutPage />} />
@@ -67,6 +72,11 @@ function App() {
           <Route path="/plusmin" element={<PlusMinus />} />
           <Route path="/psearch" element={<ProductSearch />} />
           <Route path="/searchpage" element={<SearchedPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/glogin" element={<GoogleLoginComponent />} />
+          <Route path="/logsign" element={<LoginSignUpPage />} />
+          <Route path="/loginmodal" element={<LoginModal />} />
+          <Route path="/signupmodal" element={<SignupModal />} />
         </Routes>
 
         <Footer />

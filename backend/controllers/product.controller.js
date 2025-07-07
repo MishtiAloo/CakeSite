@@ -11,7 +11,6 @@ export const getAllProducts = async (req, res) => {
 
 export const addProduct = async (req, res) => {
     const requestedProduct = req.body;
-
     const newProduct = new Product(requestedProduct);
 
     try {
@@ -32,7 +31,7 @@ export const updateProduct = async (req, res) => {
         }
 
 
-        //findByIdandUpdate wont do validation, so discriminated enums get silently ignored thus enum attributes dont update if u use that function. use save() instead. it runs validations again (doc stays same means the old ID is preserved)
+        //findByIdandUpdate wont do validation, so discriminated enums get silently ignored thus enum attributes dont get updated if u use that function. use save() instead. it runs validations again (doc stays same means the old ID is preserved)
 
         Object.assign(product, rest);
         await product.save();

@@ -19,9 +19,9 @@ function PlusMinus({value, onchange, min}) {
     }
 
   return (
-        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.05rem', backgroundColor: '', fontSize: '2.5rem'}}>
+        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.05rem', fontSize: '2rem'}}>
             <CiSquareMinus className='clickables' onClick={decrement}/>
-            <input type="Number" value={value} style={{height: '2.3rem', width: '3rem'}} onChange={handleChange}/>
+            <input type="Number" value={value} style={{height: '2rem', width: '3rem', border: '1px solid black'}} onChange={handleChange}/>
             <CiSquarePlus className='clickables' onClick={increment}/>
         </div>
   )

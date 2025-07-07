@@ -24,7 +24,7 @@ function GoToTop() {
     }, []);
 
   return (
-    <div style={{position: 'fixed', fontSize: '4rem', bottom: '120px', right: '20px', color: 'orange', borderRadius: '50%', backgroundColor: 'black', backdropFilter: 'blur(10px)', borderRadius: '50%', border: '1px solid black', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px', transform: isFixed? 'translateX(0)' : 'translateX(100px)', transition: 'transform 0.25s ease-in-out'}}>
+    <div style={{position: 'fixed', fontSize: '4rem', bottom: '120px', right: '20px', color: 'orange', backgroundColor: 'black', backdropFilter: 'blur(10px)', borderRadius: '50%', border: '1px solid black', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px', transform: isFixed? 'translateX(0)' : 'translateX(100px)', transition: 'transform 0.25s ease-in-out'}}>
         <FaArrowAltCircleUp onClick={gotoTop} className='clickables gotop'/>
     </div>
   )
