@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema ({
     buyer: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
-        required: true,
+        required: false,
     },
     state: {
         type: String,
@@ -33,7 +33,10 @@ const orderSchema = new mongoose.Schema ({
         type: Date,
         default: Date.now,
     },
-
+    totalPrice: {
+        type: Number,
+        required: true,
+    },
 }, {
     timestamps: true,
 });

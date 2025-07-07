@@ -1,0 +1,56 @@
+import {create} from 'zustand';
+import axios from 'axios';
+
+export const useCartStore = create((set, get) => ({
+    cartProducts: [],
+    loading: false,
+    error: null,
+    cartTotal: 0,
+
+    fetchAllInCart: async () => {
+        set({loading: true, error: null});
+      
+        try {
+          const response = await axios.get('/api/orders/cart');
+          set({cartProducts: response.data.data, loading: false,
+            cartTotal: response.data.data.reduce((total, order) => total + order.totalPrice, 0)
+          });
+        } catch (error) {
+          set({error: error.message, loading: false});
+        }
+      },
+      
+
+    addToCart: async (newOrderToCart) => {
+        try {
+            const response = await axios.post('/api/orders', newOrderToCart);
+            set ({cartProducts: [...get().cartProducts, response.data.data],
+                cartTotal: get().cartTotal + response.data.data.totalPrice
+            });
+        } catch (error) {
+            set ({error: error.message})
+        }
+    },
+
+    updateCart: async (updatedOrderInCart) => {
+        try {
+            const response = await axios.put('/api/orders', updatedOrderInCart);
+            set ({cartProducts: get().cartProducts.map((prod) => 
+                prod._id === updatedOrderInCart._id ? response.data.data : prod)})
+        } catch (error) {
+            set({ error: error.message });
+        }
+    },
+    
+    deleteFromCart: async (deletedOrder) => {
+        try {
+            const response = await axios.delete('/api/orders', {data: deletedOrder});
+            
+            set ({cartProducts: get().cartProducts.filter((prod) => prod._id !== deletedOrder._id),
+                cartTotal: get().cartTotal - deletedOrder.totalPrice
+            })
+        } catch (error) {
+            set({ error: error.message });
+        }
+    }
+}));

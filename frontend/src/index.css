@@ -167,7 +167,12 @@ textarea:focus {
   border-radius: 10px;
   padding: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease, color 0.2s ease;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease, color 0.2s ease, opacity 0.3s ease;
+}
+
+.basic-container.slide-out {
+  transform: translateX(-100%);
+  opacity: 0;
 }
 
 .basic-container:hover {

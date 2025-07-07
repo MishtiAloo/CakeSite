@@ -29,7 +29,7 @@ export const useProductStore = create((set, get) => ({
 
     updateProduct: async (updatedProduct) => {
         try {
-            const response = await axios.put('/api/products', newProduct);
+            const response = await axios.put('/api/products', updatedProduct);
             set ({products: get().products.map((prod) => 
                 prod._id === updatedProduct._id ? response.data.data : prod)})
         } catch (error) {
@@ -39,7 +39,7 @@ export const useProductStore = create((set, get) => ({
     
     deleteProduct: async (deletedProduct) => {
         try {
-            const response = await axios.delete('/api/products', deletedProduct);
+            const response = await axios.delete('/api/products', {data: deletedProduct});
             set ({products: get().products.filter((prod) => prod._id !== deletedProduct._id)})
         } catch (error) {
             set({ error: error.message });

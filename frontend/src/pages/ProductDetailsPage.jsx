@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import StarRating from '../components/StarRating'
 import { SiTicktick } from "react-icons/si";
@@ -8,14 +8,19 @@ import { FaRegFileLines } from "react-icons/fa6";
 import { TbBowlChopsticks } from "react-icons/tb";
 import { useProductStore } from '../stores/product.store';
 import BasicProductSectionLinear from '../components/BasicProductSectionLinear';
+import { useCartStore } from '../stores/cart.store';
+import Cart from '../components/Cart';
 
 function ProductDetailsPage() {
+    const myButton = useRef(null);
+
     const location = useLocation();
     const {parsedProduct} = location.state || {};
 
     const [inpValue, setInpValue] = useState(parsedProduct.productType === 'cake'? parsedProduct.minimumPound : parsedProduct.minimumOrder);
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [selectedTopping, setSelectedTopping] = useState('none');
+    const [selectedWriting, setSelectedWriting] = useState('');
     const [total, setTotal] = useState();
     const {
         products,
@@ -43,6 +48,28 @@ function ProductDetailsPage() {
             setRelatedProducts (products.filter((product) => product.snackType === parsedProduct.snackType))
         }
     }, [products]);
+
+    const {
+        addToCart,
+    } = useCartStore();
+
+    function handleAddToCart() {
+
+        const newOrderToCart = {
+            product: parsedProduct._id,
+            quantity: inpValue,
+            toppings: selectedTopping,
+            totalPrice: total,
+            writing: selectedWriting,
+        }
+        addToCart(newOrderToCart)
+        
+        //go back to product details page after adding to cart
+        setTimeout(() => {
+            window.history.back();
+        }, 1000);
+    }
+
 
   return (
     <div className='basic-page-container'>
@@ -84,14 +111,15 @@ function ProductDetailsPage() {
                     </div>
                     <div>
                         <p style={{fontSize: '1.2rem', fontWeight: '500', marginBottom: '0.6rem'}}>Writings:</p>
-                        <textarea placeholder='Happy Birthday!' rows={3} cols={30} />
+                        <textarea value={selectedWriting} onChange={(e) => setSelectedWriting(e.target.value)} placeholder='Happy Birthday!' rows={3} cols={30} />
                     </div>
                 </div>
             </div>
             <div className='total-section'>
                 <p style={{fontSize: '1.3rem', fontWeight: '600'}}>Total: <span style={{color: 'orangered', fontWeight: '700' ,fontSize: '1.5rem', fontStyle: 'italic'}}>{total}$</span></p>
-                <button>Add to cart</button>
+                <button ref={myButton} onClick={handleAddToCart}>Add to cart</button>
             </div>
+
             <div className="descript-ingred-section">
                 <div>
                     <p style={{fontSize: '1.5rem', fontWeight: '700', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.3rem'}}> <span><FaRegFileLines style={{color: 'orangered'}} /></span> Description</p>
@@ -105,6 +133,8 @@ function ProductDetailsPage() {
         </div>
 
         <BasicProductSectionLinear sectionTitle='Related prods' products={relatedProducts}/>
+
+        <Cart/>
     </div>
   )
 }

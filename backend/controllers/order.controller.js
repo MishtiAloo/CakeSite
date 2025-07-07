@@ -48,7 +48,7 @@ export const deleteOrder = async (req, res) => {
   
     try {
       const order = await Order.findById(_id);
-  
+    
       if (!order) {
         return res.status(404).json({ success: false, message: "order not found" });
       }
@@ -60,6 +60,16 @@ export const deleteOrder = async (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).json({ success: false, message: "Server er bhitre jhamela" });
+    }
+};
+  
+
+export const getCartOrders = async (req, res) => {
+    try {
+      const orders = await Order.find({state: 'in cart' }).populate('product');
+      res.status(200).json({ success: true, message: "Cart orders fetched", data: orders });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Server er bhitre jhamela", error: error.message });
     }
 };
   

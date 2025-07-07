@@ -34,8 +34,16 @@ import GoogleLoginComponent from './components/GoogleLoginComponent'
 import LoginSignUpPage from './pages/LoginSignUpPage'
 import LoginModal from './modals/LoginModal'
 import SignupModal from './modals/SignupModal'
+import { useEffect } from 'react'
+import { useCartStore } from './stores/cart.store'
 
 function App() {
+
+  //To always keep the the cart updated even in page reload
+  const {fetchAllInCart} = useCartStore();
+  useEffect(() => {
+    fetchAllInCart();
+  }, []);
 
   return (
     <>

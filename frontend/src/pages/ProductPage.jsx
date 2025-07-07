@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import BasicProductSection from '../components/BasicProductSectionGrid.jsx'
 import { useProductStore } from '../stores/product.store.js'
+import Cart from '../components/Cart.jsx';
 
 function ProductPage() {
     const {
@@ -24,6 +25,8 @@ function ProductPage() {
 
         <BasicProductSection sectionTitle='Snack Products' 
         products={products.filter((prod) => prod.productType === 'snacks')}/>
+
+        <Cart />
     </div>
   )
 }
