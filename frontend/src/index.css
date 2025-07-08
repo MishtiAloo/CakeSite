@@ -221,3 +221,56 @@ select:hover {
 }
 
 
+/* react-toastify styles */
+
+.my-toast-container {
+  z-index: 9999;
+}
+
+.my-toast {
+  background-color: #fff3e0;
+  color: #5d4037;
+  border-left: 6px solid #ff9800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.my-toast-body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.my-progress {
+  background: #ff9800 !important;
+}
+
+.modal-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  transform: translateX(120%);
+  transition: transform 1s ease-in-out;
+  flex-direction: row;
+  z-index: 100;
+}
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.121);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: wheat;
+  border-radius: 1rem;
+}
+
+
+

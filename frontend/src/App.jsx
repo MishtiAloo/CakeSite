@@ -30,12 +30,12 @@ import ScrollToTop from './components/ScrollToTop'
 import ProductSearch from './components/ProductSearch'
 import SearchedPage from './pages/SearchedPage'
 import CartPage from './pages/CartPage'
-import GoogleLoginComponent from './components/GoogleLoginComponent'
 import LoginSignUpPage from './pages/LoginSignUpPage'
 import LoginModal from './modals/LoginModal'
 import SignupModal from './modals/SignupModal'
 import { useEffect } from 'react'
 import { useCartStore } from './stores/cart.store'
+import { Bounce, ToastContainer } from 'react-toastify'
 
 function App() {
 
@@ -51,6 +51,24 @@ function App() {
       <Router>
         <Navbar />
         <ScrollToTop />
+
+        <ToastContainer     
+          position="bottom-right" 
+          autoClose={2000} 
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          transition={Bounce}
+          className="my-toast-container"
+          toastClassName="my-toast"      
+          bodyClassName="my-toast-body"     
+          progressClassName="my-progress"
+        />
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/hero" element={<HeroSection />} />
@@ -81,7 +99,6 @@ function App() {
           <Route path="/psearch" element={<ProductSearch />} />
           <Route path="/searchpage" element={<SearchedPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/glogin" element={<GoogleLoginComponent />} />
           <Route path="/logsign" element={<LoginSignUpPage />} />
           <Route path="/loginmodal" element={<LoginModal />} />
           <Route path="/signupmodal" element={<SignupModal />} />

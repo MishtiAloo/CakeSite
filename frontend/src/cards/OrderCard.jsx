@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PlusMinus from '../components/PlusMinus'
 import { GiCancel } from "react-icons/gi";
 import { useCartStore } from '../stores/cart.store';
+import { toast } from 'react-toastify';
 
 function OrderCard({order}) {
 
@@ -13,7 +14,9 @@ function OrderCard({order}) {
     
     setTimeout(() => {
       deleteFromCart(order);
-    }, 500);
+    }, 100);
+
+    toast.success(`Removed ${order.product.productName} from cart`);
     
   }
 

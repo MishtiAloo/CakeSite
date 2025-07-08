@@ -7,6 +7,7 @@ import { useCartStore } from '../stores/cart.store';
 import Cart from '../components/Cart';
 import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
+import { toast } from 'react-toastify';
 
 function CartPage() {
 
@@ -34,13 +35,14 @@ function CartPage() {
     cartProducts.forEach((order) => {
       deleteFromCart(order);
     });
+    toast.success(`cleared cart`);
   }
 
   return cartProducts.length > 0 ? (
     <div className='basic-page-container'>
       <div className='basic-container' style={{display: 'flex', width: '95vw', gap: '1rem', padding: '1rem'}}>
         <div style={{flex: '2.5', display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-          <button style={{alignSelf: 'end', display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'green'}}> <FaGift />Apply a voucher</button>
+          <button style={{alignSelf: 'end', display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#02D749'}}> <FaGift />Apply a voucher</button>
 
           {cartProducts.length > 0 ? cartProducts.map((order) => (<OrderCard key={order._id} order={order}/>)) : <p style={{fontSize: '1.2rem', fontStyle: 'italic'}}>Your cart is empty</p>}
 
@@ -62,7 +64,7 @@ function CartPage() {
       </div>
       <Cart/>
     </div>
-  ) : (<p className='basic-page-container'>Nothing in cart yet.</p>)
+  ) : (<p className='basic-page-container' style={{fontSize: '1.5rem', fontWeight: 'bold'}}>Nothing in cart yet.</p>)
 }
 
 export default CartPage

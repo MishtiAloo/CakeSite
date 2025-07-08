@@ -1,5 +1,6 @@
 import {create} from 'zustand';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const useCartStore = create((set, get) => ({
     cartProducts: [],
@@ -27,8 +28,10 @@ export const useCartStore = create((set, get) => ({
             set ({cartProducts: [...get().cartProducts, response.data.data],
                 cartTotal: get().cartTotal + response.data.data.totalPrice
             });
+            toast.success(`${response.data.data.product.productName} added to cart`);
         } catch (error) {
             set ({error: error.message})
+            toast.error(`Failed to add to cart: ${error.message}`);
         }
     },
 

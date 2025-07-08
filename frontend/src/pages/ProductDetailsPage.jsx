@@ -10,6 +10,7 @@ import { useProductStore } from '../stores/product.store';
 import BasicProductSectionLinear from '../components/BasicProductSectionLinear';
 import { useCartStore } from '../stores/cart.store';
 import Cart from '../components/Cart';
+import { toast } from 'react-toastify';
 
 function ProductDetailsPage() {
     const myButton = useRef(null);
@@ -67,7 +68,7 @@ function ProductDetailsPage() {
         //go back to product details page after adding to cart
         setTimeout(() => {
             window.history.back();
-        }, 1000);
+        }, 200);
     }
 
 

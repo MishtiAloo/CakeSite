@@ -6,15 +6,16 @@ import logo from '../assets/logo.png'
 import { GiHamburgerMenu } from "react-icons/gi";
 import NavSlider from './NavSlider';
 import ProductSearch from './ProductSearch';
-import { useAuthStore } from '../stores/user.store.js';
+
 
 import { FaRegUser } from "react-icons/fa";
+import { userStore } from '../stores/user.store';
 
 function Navbar() {
 
     const [isFixed, setIsFixed] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {user} = useAuthStore();
+    const {user} = userStore();
     const navigate = useNavigate();
 
     useEffect(() => {
