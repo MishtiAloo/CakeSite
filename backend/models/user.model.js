@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema ({
     userName: {
         type: String,
         required: true,
-        unique: true
     },
     userEmail: {
         type: String,
@@ -17,8 +16,8 @@ const userSchema = new mongoose.Schema ({
     },
     userPhoneNumber: {
         type: String,
-        required: true,
-        unique: true
+        required: false,
+        unique: true,
     },
     userAddress: {
         type: String,
@@ -36,7 +35,12 @@ const userSchema = new mongoose.Schema ({
         type: String,
         default: 'new',
         enum: ['active', 'inactive', 'banned', 'new']
-    }
+    },
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order',
+        required: false,
+    }],
 }, {
     timestamps: true,
 }, {

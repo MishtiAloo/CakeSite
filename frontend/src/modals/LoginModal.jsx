@@ -3,6 +3,7 @@ import { set } from 'mongoose';
 import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify';
 import { userStore } from '../stores/user.store';
+import { useCartStore } from '../stores/cart.store';
 
 function LoginModal({isOpen, onClose}) {
 
@@ -14,6 +15,7 @@ function LoginModal({isOpen, onClose}) {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const {setUser} = userStore();
+  const {fetchAllInCart} = useCartStore();
 
   const myelm = useRef(null);
   useEffect(() => {
@@ -49,6 +51,7 @@ function LoginModal({isOpen, onClose}) {
       toast.success('Login successful');
       
       setUser(response.data.data);
+      fetchAllInCart(response.data.data); // Fetch cart orders after login
       handleCancel();
 
     } catch (error) {
@@ -68,8 +71,8 @@ function LoginModal({isOpen, onClose}) {
 
   return (
     <div ref={myelm} className='modal-container'>
-      <div className='modal-overlay' onClick={handleCancel}>
-        <div className='modal-content clickables basic-container' onClick={(e) => e.stopPropagation()}>
+      <div className='modal-overlay'>
+        <div className='modal-content clickables basic-container'>
 
           <h2 style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem'}}>SignIn</h2>
 

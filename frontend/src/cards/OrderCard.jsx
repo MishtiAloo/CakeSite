@@ -53,9 +53,11 @@ function OrderCard({order}) {
         <p style={{paddingTop: '1rem', fontSize: '1rem', fontWeight: 'bold'}}>{order.totalPrice + ' $'}</p>
       </div>
 
-      <div style={{flex: '0.3', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-        <GiCancel className='clickables' onClick={handleDelete} style={{alignSelf: 'flex-end', fontSize: '1.5rem', color: 'orangered'}}/> 
-      </div>
+      { order.state === 'in cart' &&       
+        <div style={{flex: '0.3', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+          <GiCancel className='clickables' onClick={handleDelete} style={{alignSelf: 'flex-end', fontSize: '1.5rem', color: 'orangered'}}/> 
+        </div>
+      }
     </div>
   )
 }

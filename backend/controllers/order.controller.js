@@ -1,4 +1,5 @@
 import Order from "../models/Order.model.js";
+import User from "../models/user.model.js";
 
 export const getAllOrders = async (req, res) => {
     try {
@@ -9,12 +10,38 @@ export const getAllOrders = async (req, res) => {
     }
 }
 
+export const getAllOrdersFromUser = async (req, res) => {
+    const {user} = req.body;
+    try {
+        const foundUser = await User.findById(user._id).populate({
+            path: 'orders',
+            populate: { path: 'product' } // populate product inside each order
+          });
+          
+        const orders = foundUser.orders;
+        res.status(200).json({success: true, message: "All orders have been fetched", data: orders});
+    } catch (error) {
+        res.status(500).json({success: false, message: "Server er bhitre jhamela"});
+    }
+}
+
+
 export const addOrder = async (req, res) => {
-    const requestedOrder = req.body;
-    const newOrder = new Order(requestedOrder);
+    const {user, requestedOrder} = req.body;
 
     try {
+        const foundUser = await User.findById(user._id);
+        if (!foundUser) {
+            return res.status(404).json({success: false, message: "User not found with this ID"});
+        }
+
+        const newOrder = new Order({...requestedOrder, buyer: foundUser._id});
         await newOrder.save();
+
+        foundUser.orders.push(newOrder._id);
+        await foundUser.save();
+
+        await newOrder.populate('product');
         res.status(201).json({success: true, message: "Order added successfully", data: newOrder});
     } catch (error) {
             res.status(500).json({success: false, message: "Server er bhitre jhamela"});
@@ -54,6 +81,11 @@ export const deleteOrder = async (req, res) => {
       }
   
       await order.deleteOne();
+
+      // Remove reference from user
+      await User.findByIdAndUpdate(order.buyer, {
+        $pull: { orders: _id }
+      });
   
       res.status(200).json({ success: true, message: "order deleted successfully" });
   
@@ -65,10 +97,20 @@ export const deleteOrder = async (req, res) => {
   
 
 export const getCartOrders = async (req, res) => {
+    const { user } = req.body;
+
     try {
-      const orders = await Order.find({state: 'in cart' }).populate('product');
+        const populatedUser = await User.findById(user._id)
+        .populate({
+          path: 'orders',
+          populate: { path: 'product' }  // This populates the product field inside each order
+        });
+      
+      const orders = populatedUser.orders.filter((order) => order.state === 'in cart');
+
       res.status(200).json({ success: true, message: "Cart orders fetched", data: orders });
     } catch (error) {
+        
       res.status(500).json({ success: false, message: "Server er bhitre jhamela", error: error.message });
     }
 };

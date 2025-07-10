@@ -1,6 +1,7 @@
 import {create} from 'zustand';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { userStore } from './user.store';
 
 export const useCartStore = create((set, get) => ({
     cartProducts: [],
@@ -8,23 +9,35 @@ export const useCartStore = create((set, get) => ({
     error: null,
     cartTotal: 0,
 
-    fetchAllInCart: async () => {
+    fetchAllInCart: async (user) => {
         set({loading: true, error: null});
+
+        if (!user) {
+            set({loading: false, error: 'Please login to view cart'});
+            return;
+        }
       
         try {
-          const response = await axios.get('/api/orders/cart');
+            
+          const response = await axios.post('/api/orders/cart', {user});
           set({cartProducts: response.data.data, loading: false,
             cartTotal: response.data.data.reduce((total, order) => total + order.totalPrice, 0)
           });
         } catch (error) {
-          set({error: error.message, loading: false});
+          console.error('Error fetching cart orders:', error);
         }
       },
       
 
-    addToCart: async (newOrderToCart) => {
+    addToCart: async (requestedOrder, user) => {
+
+        if (!user) {
+            toast.error('Please login to add items to cart');
+            return;
+        }
+
         try {
-            const response = await axios.post('/api/orders', newOrderToCart);
+            const response = await axios.post('/api/orders', {user, requestedOrder});
             set ({cartProducts: [...get().cartProducts, response.data.data],
                 cartTotal: get().cartTotal + response.data.data.totalPrice
             });
@@ -46,6 +59,7 @@ export const useCartStore = create((set, get) => ({
     },
     
     deleteFromCart: async (deletedOrder) => {
+
         try {
             const response = await axios.delete('/api/orders', {data: deletedOrder});
             

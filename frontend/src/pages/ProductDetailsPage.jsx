@@ -11,9 +11,12 @@ import BasicProductSectionLinear from '../components/BasicProductSectionLinear';
 import { useCartStore } from '../stores/cart.store';
 import Cart from '../components/Cart';
 import { toast } from 'react-toastify';
+import { userStore } from '../stores/user.store';
 
 function ProductDetailsPage() {
     const myButton = useRef(null);
+
+    const {user} = userStore();
 
     const location = useLocation();
     const {parsedProduct} = location.state || {};
@@ -63,7 +66,7 @@ function ProductDetailsPage() {
             totalPrice: total,
             writing: selectedWriting,
         }
-        addToCart(newOrderToCart)
+        addToCart(newOrderToCart, user)
         
         //go back to product details page after adding to cart
         setTimeout(() => {

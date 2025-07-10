@@ -36,6 +36,7 @@ import SignupModal from './modals/SignupModal'
 import { useEffect } from 'react'
 import { useCartStore } from './stores/cart.store'
 import { Bounce, ToastContainer } from 'react-toastify'
+import ProfilePage from './pages/ProfilePage'
 
 function App() {
 
@@ -102,6 +103,7 @@ function App() {
           <Route path="/logsign" element={<LoginSignUpPage />} />
           <Route path="/loginmodal" element={<LoginModal />} />
           <Route path="/signupmodal" element={<SignupModal />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
 
         <Footer />

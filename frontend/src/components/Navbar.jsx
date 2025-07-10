@@ -43,6 +43,10 @@ function Navbar() {
         navigate('/logsign');
     }
 
+    function handleProfile() {
+        navigate('/profile');
+    }
+
   return (
     <>
     <div className={`nav-container ${isFixed? 'fixed' : ''}`}>
@@ -62,8 +66,8 @@ function Navbar() {
         </div>
 
         <div className='nav-profile-menu'>
-            {user ? <div className="account clickables">
-              <img src="https://www.bssnews.net/assets/news_photos/2023/02/05/image-109069-1675599623.jpg" alt="" />
+            {user ? <div className="account clickables" onClick={handleProfile}>
+              <img src={user.userProfileImage} alt="" />
             </div> : 
             <div className="account clickables" style={{boxShadow: 'none', overflow: 'visible', display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'wheat', borderRadius: '1rem', padding: '0.8rem'}} onClick={handleloginSignup}>
                 <FaRegUser />

@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import User from "../models/user.model.js";
 
 // Get all users
@@ -20,7 +21,18 @@ export const addUser = async (req, res) => {
         await newUser.save();
         res.status(201).json({ success: true, message: "User added successfully", data: newUser });
     } catch (error) {
-        res.status(500).json({ success: false, message: "Server er bhitre jhamela" });
+
+        // Handle duplicate key error
+        if (error.code === 11000) {
+            const duplicateField = Object.keys(error.keyValue)[0];
+            return res.status(409).json({
+                success: false,
+                message: `${duplicateField} already exists. Please use a different one.`,
+                field: duplicateField,
+            });
+        }
+
+        res.status(500).json({ success: false, message: "Server er bhitre jhamela" });  
     }
 };
 
@@ -40,9 +52,20 @@ export const updateUser = async (req, res) => {
 
         res.status(200).json({ success: true, message: "User updated successfully", data: user });
     } catch (error) {
+        // Handle duplicate key error
+        if (error.code === 11000) {
+            const duplicateField = Object.keys(error.keyValue)[0];
+            return res.status(409).json({
+                success: false,
+                message: `${duplicateField} already exists. Please use a different one.`,
+                field: duplicateField,
+            });
+        }
+
         res.status(500).json({ success: false, message: "Server er bhitre jhamela" });
     }
 };
+
 
 // Delete user
 export const deleteUser = async (req, res) => {
@@ -69,7 +92,7 @@ export const loginUser = async (req, res) => {
     const {userName, userPassword} = req.body;
 
     try {
-        const validUser = User.findOne({userName: userName});
+        const validUser = await User.findOne({userName: userName});
 
         if (!validUser) 
             return res.status(404).json({success: false, message: "User not found"});

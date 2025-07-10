@@ -26,12 +26,16 @@ const orderSchema = new mongoose.Schema ({
     },
     state: {
         type: String,
-        enum: ['in cart', 'checked out', 'ready', 'delivering', 'delivered'],
+        enum: ['in cart', 'checked out', 'delivered'],
         default: 'in cart',
     },
     orderedAt: {
         type: Date,
         default: Date.now,
+    },
+    deliveredAt: {
+        type: Date,
+        required: false,
     },
     totalPrice: {
         type: Number,

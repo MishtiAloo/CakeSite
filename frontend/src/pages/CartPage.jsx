@@ -8,10 +8,13 @@ import Cart from '../components/Cart';
 import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import { toast } from 'react-toastify';
+import { userStore } from '../stores/user.store';
 
 function CartPage() {
 
   const navigate = useNavigate();
+
+  const { user } = userStore();
 
   const {
     cartProducts,
@@ -24,7 +27,7 @@ function CartPage() {
   } = useCartStore();
 
   useEffect(() => {
-    fetchAllInCart();
+    fetchAllInCart(user);
   }, []);
 
   function handleGoToShopping() {
@@ -36,6 +39,10 @@ function CartPage() {
       deleteFromCart(order);
     });
     toast.success(`cleared cart`);
+  }
+
+  function handleProceed() {
+    
   }
 
   return cartProducts.length > 0 ? (
@@ -56,7 +63,7 @@ function CartPage() {
             <p style={{fontSize: '1.3rem', fontWeight: 'bold', textDecoration: 'underline'}}>Cart Total</p>
             <p style={{fontWeight: 'bold'}}>{cartTotal}$</p>
             <p style={{alignSelf: 'end', fontStyle: 'italic', color: 'gray', fontSize: '0.7rem', paddingTop: '1rem'}}>*Delivery charge will be added on checkout</p>
-            <button style={{alignSelf: 'end', display: 'flex', alignItems: 'center', gap: '0.5rem'}}> Procced to Checkout <FaArrowRightLong /></button>
+            <button onClick={handleProceed} style={{alignSelf: 'end', display: 'flex', alignItems: 'center', gap: '0.5rem'}}> Procced to Checkout <FaArrowRightLong /></button>
           </div>
           <button onClick={handleClearCart} style={{marginTop: '1rem', backgroundColor: 'red', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '0.5rem'}}> <MdDelete style={{fontSize: '1.4rem'}} /> Clear Cart</button>
         </div>
