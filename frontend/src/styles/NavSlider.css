@@ -21,20 +21,23 @@
 }
 
 .overlay {
-    width: 75%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.121);
-    backdrop-filter: blur(10px);
+  width: 75%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.121);
+  backdrop-filter: blur(10px);
 }
 
 .slider {
   width: 25%;
   height: 100%;
-  background-color: #FFFFCD;
+  background-color: #ffffcd;
   overflow-y: auto;
   border: 0.2rem solid orangered;
   border-radius: 1rem 0 0 1rem;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
 .slider-content {
@@ -66,23 +69,23 @@
 
 .slider-logoX {
   width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .close-icon {
-    font-size: 2rem;
-    cursor: pointer;
-    color: orangered;
+  font-size: 2rem;
+  cursor: pointer;
+  color: orangered;
 }
 
 .slider-search {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
 }
 
 .slider-quickLinks {
@@ -90,20 +93,20 @@
 }
 
 .slider-quickLinks p {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
-    .overlay {
-        width: 10%;
-        height: 100%;
-    }
+  .overlay {
+    width: 10%;
+    height: 100%;
+  }
 
-    .slider {
-        width: 90%;
-        height: 100vh;
-    }
+  .slider {
+    width: 90%;
+    height: 100vh;
+  }
 }

@@ -8,7 +8,7 @@
   width: 35vw;
   height: 28vh;
   min-width: 300px;
-  background-color: #FFFFCD;
+  background-color: #ffffcd;
 }
 
 .OCC-image-part {
@@ -18,37 +18,37 @@
 }
 
 .OCC-content-part {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .OCC-content-part h2 {
-    font-size: 1.2rem;
-    font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .OCC-content-part p {
-    font-size: 0.85rem;
-    color: #555;
-    line-height: 1.2;
-    margin-top: 0.05rem;
-    margin-bottom: 1rem;
-    text-align: left;
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.2;
+  margin-top: 0.05rem;
+  margin-bottom: 1rem;
+  text-align: left;
 }
 
 .OCC-foot {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .OCC-foot p {
-    font-size: 0.9rem;
-    color: #199902;
-    font-style: italic;
+  font-size: 0.9rem;
+  color: #199902;
+  font-style: italic;
 }

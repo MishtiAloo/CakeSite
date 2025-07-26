@@ -1,61 +1,59 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LandingPage from './pages/LandingPage'
-import HeroSection from './components/HeroSection'
-import PopularSection from './components/PopularSection'
-import CakeCard from './cards/CakeCard'
-import SeasonalSection from './components/SeasonalSection'
-import HomePage from './pages/HomePage'
-import OfferSection from './components/OfferSection'
-import OfferCard from './cards/OfferCard'
-import CategorySection from './components/CategorySection'
-import DeliveryStoreSection from './components/DeliveryStoreSection'
-import CustomerReviewSection from './components/CustomerReviewSection'
-import ReviewCard from './cards/ReviewCard'
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
-import MottoSection from './components/MottoSection'
-import Cart from './components/Cart'
-import GoToTop from './components/GoToTop'
-import NavSlider from './components/NavSlider'
-import AboutPage from './pages/AboutPage'
-import OffersPage from './pages/OffersPage'
-import OfferCardCompact from './cards/OfferCardCompact'
-import OCCSection from './components/OCCSection'
-import ProductPage from './pages/ProductPage'
-import ProductDetailsPage from './pages/ProductDetailsPage'
-import StarRating from './components/StarRating'
-import PlusMinus from './components/PlusMinus'
-import ScrollToTop from './components/ScrollToTop'
-import ProductSearch from './components/ProductSearch'
-import SearchedPage from './pages/SearchedPage'
-import CartPage from './pages/CartPage'
-import LoginSignUpPage from './pages/LoginSignUpPage'
-import LoginModal from './modals/LoginModal'
-import SignupModal from './modals/SignupModal'
-import { useEffect } from 'react'
-import { useCartStore } from './stores/cart.store'
-import { Bounce, ToastContainer } from 'react-toastify'
-import ProfilePage from './pages/ProfilePage'
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import HeroSection from "./components/HeroSection";
+import PopularSection from "./components/PopularSection";
+import CakeCard from "./cards/CakeCard";
+import SeasonalSection from "./components/SeasonalSection";
+import HomePage from "./pages/HomePage";
+import OfferSection from "./components/OfferSection";
+import OfferCard from "./cards/OfferCard";
+import CategorySection from "./components/CategorySection";
+import DeliveryStoreSection from "./components/DeliveryStoreSection";
+import CustomerReviewSection from "./components/CustomerReviewSection";
+import ReviewCard from "./cards/ReviewCard";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import MottoSection from "./components/MottoSection";
+import Cart from "./components/Cart";
+import GoToTop from "./components/GoToTop";
+import NavSlider from "./components/NavSlider";
+import AboutPage from "./pages/AboutPage";
+import OffersPage from "./pages/OffersPage";
+import OfferCardCompact from "./cards/OfferCardCompact";
+import OCCSection from "./components/OCCSection";
+import ProductPage from "./pages/ProductPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import StarRating from "./components/StarRating";
+import PlusMinus from "./components/PlusMinus";
+import ScrollToTop from "./components/ScrollToTop";
+import ProductSearch from "./components/ProductSearch";
+import SearchedPage from "./pages/SearchedPage";
+import CartPage from "./pages/CartPage";
+import LoginSignUpPage from "./pages/LoginSignUpPage";
+import LoginModal from "./modals/LoginModal";
+import SignupModal from "./modals/SignupModal";
+import { useEffect } from "react";
+import { useCartStore } from "./stores/cart.store";
+import { Bounce, ToastContainer } from "react-toastify";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
-
   //To always keep the the cart updated even in page reload
-  const {fetchAllInCart} = useCartStore();
+  const { fetchAllInCart } = useCartStore();
   useEffect(() => {
     fetchAllInCart();
   }, []);
 
   return (
     <>
-
       <Router>
         <Navbar />
         <ScrollToTop />
 
-        <ToastContainer     
-          position="bottom-right" 
-          autoClose={2000} 
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
@@ -65,8 +63,8 @@ function App() {
           theme="dark"
           transition={Bounce}
           className="my-toast-container"
-          toastClassName="my-toast"      
-          bodyClassName="my-toast-body"     
+          toastClassName="my-toast"
+          bodyClassName="my-toast-body"
           progressClassName="my-progress"
         />
 
@@ -108,9 +106,8 @@ function App() {
 
         <Footer />
       </Router>
-      
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -9,8 +9,8 @@
 
   color-scheme: light dark;
   color: black;
-  background-color: #FFFDD0;
-  background-image: url('./assets/pastry222.png'); /* Adjust path as needed */
+  background-color: #fffdd0;
+  background-image: url("./assets/pastry222.png"); /* Adjust path as needed */
   background-repeat: repeat;
 
   font-synthesis: none;
@@ -44,14 +44,15 @@ a:hover {
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .link:hover {
   color: #ff5722;
   transform: scale(1.05);
 }
-
 
 body {
   margin: 0;
@@ -76,10 +77,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #FF4F00;
+  background-color: #ff4f00;
   color: white;
   cursor: pointer;
-  transition: border-color 0.25s, font-size 0.25s, background-color 0.25s;
+  transition:
+    border-color 0.25s,
+    font-size 0.25s,
+    background-color 0.25s;
 }
 button:hover {
   background-color: #f66b2b;
@@ -112,7 +116,9 @@ input {
   background-color: #fffef0;
   color: #333;
   outline: none;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
 }
 
 input:focus {
@@ -126,8 +132,10 @@ textarea {
   border-radius: 0.75rem;
   font-size: 1rem;
   font-family: inherit;
-  background-color: #FFFBAE;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #fffbae;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
   resize: vertical;
 }
 
@@ -137,11 +145,12 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(255, 135, 15, 0.3);
 }
 
-
-                                          /* for clickable components */
+/* for clickable components */
 .clickables {
   cursor: pointer;
-  transition: transform 0.3s ease, color 0.2s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.2s ease;
 }
 
 .clickables:hover {
@@ -152,8 +161,7 @@ textarea:focus {
   transform: scale(0.9);
 }
 
-
-                                          /* for the go to top button */
+/* for the go to top button */
 .gotop:hover {
   transform: rotate(360deg);
 }
@@ -163,11 +171,15 @@ textarea:focus {
 }
 
 .basic-container {
-  background-color: #FFFFCD;
+  background-color: #ffffcd;
   border-radius: 10px;
   padding: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease, color 0.2s ease, opacity 0.3s ease;
+  transition:
+    box-shadow 0.3s ease-in-out,
+    transform 0.3s ease,
+    color 0.2s ease,
+    opacity 0.3s ease;
 }
 
 .basic-container.slide-out {
@@ -176,7 +188,9 @@ textarea:focus {
 }
 
 .basic-container:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 .basic-image-container {
@@ -213,13 +227,14 @@ select {
   background-color: #fffef0;
   color: #333;
   outline: none;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
 }
 
 select:hover {
   border-color: #dca901;
 }
-
 
 /* react-toastify styles */
 
@@ -236,7 +251,7 @@ select:hover {
 }
 
 .my-toast-body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1rem;
 }
 
@@ -271,6 +286,3 @@ select:hover {
   background-color: wheat;
   border-radius: 1rem;
 }
-
-
-

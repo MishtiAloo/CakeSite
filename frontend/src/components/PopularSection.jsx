@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import CakeCard from '../cards/CakeCard'
-import SectionTitleBox from './SectionTitleBox'
-import { useProductStore } from '../stores/product.store.js'
-import BasicProductSection from './BasicProductSectionGrid.jsx';
+import React, { useEffect } from "react";
+import CakeCard from "../cards/CakeCard";
+import SectionTitleBox from "./SectionTitleBox";
+import { useProductStore } from "../stores/product.store.js";
+import BasicProductSection from "./BasicProductSectionGrid.jsx";
 
 function PopularSection() {
   const {
@@ -21,9 +21,12 @@ function PopularSection() {
 
   return (
     <>
-      <BasicProductSection sectionTitle="Popular Cakes" products={products && products.filter((prod) => prod.totalBuys >= 100)} />
+      <BasicProductSection
+        sectionTitle="Popular Cakes"
+        products={products && products.filter((prod) => prod.totalBuys >= 100)}
+      />
     </>
-  )
+  );
 }
 
-export default PopularSection
+export default PopularSection;

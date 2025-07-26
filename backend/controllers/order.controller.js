@@ -2,116 +2,153 @@ import Order from "../models/Order.model.js";
 import User from "../models/user.model.js";
 
 export const getAllOrders = async (req, res) => {
-    try {
-        const orders = await Order.find({})
-        res.status(200).json({success: true, message: "All orders have been fetched", data: orders});
-    } catch (error) {
-        res.status(500).json({success: false, message: "Server er bhitre jhamela"});
-    }
-}
+  try {
+    const orders = await Order.find({});
+    res.status(200).json({
+      success: true,
+      message: "All orders have been fetched",
+      data: orders,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Server er bhitre jhamela" });
+  }
+};
 
 export const getAllOrdersFromUser = async (req, res) => {
-    const {user} = req.body;
-    try {
-        const foundUser = await User.findById(user._id).populate({
-            path: 'orders',
-            populate: { path: 'product' } // populate product inside each order
-          });
-          
-        const orders = foundUser.orders;
-        res.status(200).json({success: true, message: "All orders have been fetched", data: orders});
-    } catch (error) {
-        res.status(500).json({success: false, message: "Server er bhitre jhamela"});
-    }
-}
+  const { user } = req.body;
+  try {
+    const foundUser = await User.findById(user._id).populate({
+      path: "orders",
+      populate: { path: "product" }, // populate product inside each order
+    });
 
+    const orders = foundUser.orders;
+    res.status(200).json({
+      success: true,
+      message: "All orders have been fetched",
+      data: orders,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Server er bhitre jhamela" });
+  }
+};
 
+//In backend functions, as I again have to manually findById any mongoose document, so it's pointless to send the whole document to backend forom frontend (like i hav done here: sent the whole order then used only the _id of it to get the new order from DB). Why do i need to findById? it's because in passed document i cant use mongo functions as its treated as just an object. So to use like foounduser.order.push(neworder._id), js needs to know that user is a predefined mongo doc where it has to save something
 export const addOrder = async (req, res) => {
-    const {user, requestedOrder} = req.body;
+  const { user, requestedOrder } = req.body;
 
-    try {
-        const foundUser = await User.findById(user._id);
-        if (!foundUser) {
-            return res.status(404).json({success: false, message: "User not found with this ID"});
-        }
-
-        const newOrder = new Order({...requestedOrder, buyer: foundUser._id});
-        await newOrder.save();
-
-        foundUser.orders.push(newOrder._id);
-        await foundUser.save();
-
-        await newOrder.populate('product');
-        res.status(201).json({success: true, message: "Order added successfully", data: newOrder});
-    } catch (error) {
-            res.status(500).json({success: false, message: "Server er bhitre jhamela"});
+  try {
+    const foundUser = await User.findById(user._id);
+    if (!foundUser) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found with this ID" });
     }
-}
+
+    const newOrder = new Order({ ...requestedOrder, buyer: foundUser._id });
+    await newOrder.save();
+
+    foundUser.orders.push(newOrder._id);
+    await foundUser.save();
+
+    await newOrder.populate("product");
+    res.status(201).json({
+      success: true,
+      message: "Order added successfully",
+      data: newOrder,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Server er bhitre jhamela" });
+  }
+};
 
 export const updateOrder = async (req, res) => {
-    const {_id, ...rest} = req.body;
+  const { _id, ...rest } = req.body;
 
-    try {
-        let order = await Order.findById(_id);
-        if (!order) {
-            return res.status(404).json({success: false, message: "Bhul id diso, ei id er kisu nai"});
-        }
-
-
-        //findByIdandUpdate wont do validation, so discriminated enums get silently ignored thus enum attributes dont get updated if u use that function. use save() instead. it runs validations again (doc stays same means the old ID is preserved)
-
-        Object.assign(order, rest);
-        await order.save();
-
-        res.status(200).json({success: true, message: "order updated successfully", data: order});
-    } catch (error) {
-        res.status(500).json({success: false, message: "Server er bhitre jhamela", error: error.message});
+  try {
+    let order = await Order.findById(_id);
+    if (!order) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Bhul id diso, ei id er kisu nai" });
     }
-};
 
+    //findByIdandUpdate wont do validation, so discriminated enums get silently ignored thus enum attributes dont get updated if u use that function. use save() instead. it runs validations again (doc stays same means the old ID is preserved)
+
+    Object.assign(order, rest);
+    await order.save();
+
+    res.status(200).json({
+      success: true,
+      message: "order updated successfully",
+      data: order,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server er bhitre jhamela",
+      error: error.message,
+    });
+  }
+};
 
 export const deleteOrder = async (req, res) => {
-    const { _id } = req.body;
-  
-    try {
-      const order = await Order.findById(_id);
-    
-      if (!order) {
-        return res.status(404).json({ success: false, message: "order not found" });
-      }
-  
-      await order.deleteOne();
+  const { _id } = req.body;
 
-      // Remove reference from user
-      await User.findByIdAndUpdate(order.buyer, {
-        $pull: { orders: _id }
-      });
-  
-      res.status(200).json({ success: true, message: "order deleted successfully" });
-  
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Server er bhitre jhamela" });
+  try {
+    const order = await Order.findById(_id);
+
+    if (!order) {
+      return res
+        .status(404)
+        .json({ success: false, message: "order not found" });
     }
+
+    await order.deleteOne();
+
+    // Remove reference from user
+    await User.findByIdAndUpdate(order.buyer, {
+      $pull: { orders: _id },
+    });
+
+    res
+      .status(200)
+      .json({ success: true, message: "order deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ success: false, message: "Server er bhitre jhamela" });
+  }
 };
-  
 
 export const getCartOrders = async (req, res) => {
-    const { user } = req.body;
+  const { user } = req.body;
 
-    try {
-        const populatedUser = await User.findById(user._id)
-        .populate({
-          path: 'orders',
-          populate: { path: 'product' }  // This populates the product field inside each order
-        });
-      
-      const orders = populatedUser.orders.filter((order) => order.state === 'in cart');
+  try {
+    const populatedUser = await User.findById(user._id).populate({
+      path: "orders",
+      populate: { path: "product" }, // This populates the product field inside each order
+    });
 
-      res.status(200).json({ success: true, message: "Cart orders fetched", data: orders });
-    } catch (error) {
-        
-      res.status(500).json({ success: false, message: "Server er bhitre jhamela", error: error.message });
-    }
+    const orders = populatedUser.orders.filter(
+      (order) => order.state === "in cart",
+    );
+
+    res
+      .status(200)
+      .json({ success: true, message: "Cart orders fetched", data: orders });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server er bhitre jhamela",
+      error: error.message,
+    });
+  }
 };
-  

@@ -1,50 +1,54 @@
 import mongoose from "mongoose";
 
-const orderSchema = new mongoose.Schema ({
-
+const orderSchema = new mongoose.Schema(
+  {
     product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
     },
     quantity: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
-    toppings: [{
+    toppings: [
+      {
         type: String,
         required: false,
-    }],
+      },
+    ],
     writing: {
-        type: String,
-        required: false,
+      type: String,
+      required: false,
     },
     buyer: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User',
-        required: false,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
     },
     state: {
-        type: String,
-        enum: ['in cart', 'checked out', 'delivered'],
-        default: 'in cart',
+      type: String,
+      enum: ["in cart", "checked out", "delivered"],
+      default: "in cart",
     },
     orderedAt: {
-        type: Date,
-        default: Date.now,
+      type: Date,
+      default: Date.now,
     },
     deliveredAt: {
-        type: Date,
-        required: false,
+      type: Date,
+      required: false,
     },
     totalPrice: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
-}, {
+  },
+  {
     timestamps: true,
-});
+  },
+);
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 export default Order;

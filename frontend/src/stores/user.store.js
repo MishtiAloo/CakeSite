@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { create } from 'zustand';
+import axios from "axios";
+import { create } from "zustand";
 
 export const userStore = create((set) => ({
   user: null,
@@ -8,12 +8,12 @@ export const userStore = create((set) => ({
   setUser: async (user) => {
     try {
       // Fetch user's orders
-      const response = await axios.post('/api/orders/allorders', { user });
+      const response = await axios.post("/api/orders/allorders", { user });
       const orders = response.data.data;
 
       set({ user, userOrders: orders });
     } catch (error) {
-      console.error('Failed to fetch user orders:', error);
+      console.error("Failed to fetch user orders:", error);
       set({ user, userOrders: [] }); // fallback if fetching orders fails
     }
   },
@@ -22,7 +22,7 @@ export const userStore = create((set) => ({
 
   deleteUser: async (deletedUser) => {
     try {
-      const response = await axios.delete('/api/users', { data: deletedUser });
+      const response = await axios.delete("/api/users", { data: deletedUser });
       set({ user: null, userOrders: [] });
     } catch (error) {
       set({ error: error.message });
